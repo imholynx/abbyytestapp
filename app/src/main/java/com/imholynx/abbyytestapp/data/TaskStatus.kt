@@ -1,10 +1,10 @@
 package com.imholynx.abbyytestapp.data
 
-enum class TaskStatus{
+enum class TaskStatus(val code: Int){
     //новая задача
-    NEW_TASK,
+    NEW_TASK(0),
     //в процессе выполнения
-    ACTIVE_TASK,
+    ACTIVE_TASK(1),
     //выполнена
-    COMPLITED_TASK
+    COMPLITED_TASK(2)
 }

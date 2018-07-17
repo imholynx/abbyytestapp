@@ -1,12 +1,9 @@
 package com.imholynx.abbyytestapp.data
 
-import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.*
 import java.util.*
 
 @Entity(tableName = "tasks")
-
 data class Task @JvmOverloads constructor(
         @PrimaryKey @ColumnInfo(name = "id") var id:String = UUID.randomUUID().toString(),
         @ColumnInfo(name = "title") var title: String ="",
