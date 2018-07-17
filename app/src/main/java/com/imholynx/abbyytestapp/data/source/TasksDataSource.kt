@@ -3,7 +3,7 @@ package com.imholynx.abbyytestapp.data.source
 import com.imholynx.abbyytestapp.data.Task
 import com.imholynx.abbyytestapp.data.TaskStatus
 
-interface TaskDataSource {
+interface TasksDataSource {
     interface LoadTasksCallBack {
         fun onTasksLoaded(tasks: List<Task>)
         fun onDataNotAvailable()

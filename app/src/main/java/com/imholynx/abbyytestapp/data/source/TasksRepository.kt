@@ -3,7 +3,7 @@ package com.imholynx.abbyytestapp.data.source
 import com.imholynx.abbyytestapp.data.Task
 import com.imholynx.abbyytestapp.data.TaskStatus
 
-class TasksRepository():TaskDataSource{
+class TasksRepository():TasksDataSource{
 
     companion object {
         private var INSTANCE: TasksRepository? = null
@@ -17,11 +17,11 @@ class TasksRepository():TaskDataSource{
         }
     }
 
-    override fun getTasks(callback: TaskDataSource.LoadTasksCallBack) {
+    override fun getTasks(callback: TasksDataSource.LoadTasksCallBack) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getTask(id: String, callback: TaskDataSource.GetTaskCallback) {
+    override fun getTask(id: String, callback: TasksDataSource.GetTaskCallback) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
