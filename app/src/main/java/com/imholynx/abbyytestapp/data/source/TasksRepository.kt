@@ -19,26 +19,40 @@ class TasksRepository(val tasksLocalDataSource: TasksDataSource):TasksDataSource
     }
 
     override fun getTasks(callback: TasksDataSource.LoadTasksCallBack) {
+        tasksLocalDataSource.getTasks(object: TasksDataSource.LoadTasksCallBack{
+            override fun onTasksLoaded(tasks: List<Task>) {
+                callback.onTasksLoaded(tasks)
+            }
+            override fun onDataNotAvailable() {
+                callback.onDataNotAvailable()
+            }
+        })
     }
 
     override fun getTask(id: String, callback: TasksDataSource.GetTaskCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        tasksLocalDataSource.getTask(id, object : TasksDataSource.GetTaskCallback {
+            override fun onTaskLoaded(task: Task) {
+                callback.onTaskLoaded(task)
+            }
+            override fun onDataNotAvailable() {
+                callback.onDataNotAvailable()
+            }
+        })
     }
 
     override fun saveTask(task: Task) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        tasksLocalDataSource.saveTask(task)
     }
 
     override fun setStatus(id: String, status: TaskStatus) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        tasksLocalDataSource.setStatus(id,status)
     }
 
     override fun deleteTask(id: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        tasksLocalDataSource.deleteTask(id)
     }
 
     override fun deleteAllTasks() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        tasksLocalDataSource.deleteAllTasks()
     }
-
 }
