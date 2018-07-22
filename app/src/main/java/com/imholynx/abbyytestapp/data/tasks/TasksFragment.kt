@@ -1,19 +1,40 @@
 package com.imholynx.abbyytestapp.data.tasks
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.widget.Adapter
+import android.widget.TextView
 import com.imholynx.abbyytestapp.R
 import com.imholynx.abbyytestapp.data.Task
 
 class TasksFragment : Fragment(),TasksContract.View {
-    override var isActive: Boolean
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-        set(value) {}
+
+    override lateinit var presenter: TasksContract.Presenter
+
+    override var isActive: Boolean = false
+        get() = isAdded
+
+    private lateinit var noTasksView: View
+    private lateinit var noTasksTextView: TextView
+    private lateinit var tasksView: View
+    private lateinit var filteringLabelView: TextView
+
+    override fun onResume() {
+        super.onResume()
+        presenter.start()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        presenter.result(requestCode,resultCode)
+    }
+
+
 
     override fun setLoadingIndicator(active: Boolean) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -51,14 +72,21 @@ class TasksFragment : Fragment(),TasksContract.View {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override var presenter: TasksContract.Presenter
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-        set(value) {}
+    private val tasksAdapter = TasksAdapter(ArrayList(0), )
+    inner class TasksAdapter(arrayList: Any):  {
+
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tasks, container, false)
+        var root =  inflater.inflate(R.layout.fragment_tasks, container, false)
+
+        with(root){
+            val recyclerView = findViewById<RecyclerView>(R.id.tasks_list).apply{adapter = tasksAdapter}
+            tasksAdapter
+
+        }
     }
 
     companion object {

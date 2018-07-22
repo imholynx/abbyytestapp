@@ -28,4 +28,6 @@ class TasksActivity : AppCompatActivity(){
         val tasksPresenter = TasksPresenter(TasksRepository.getInstance(TasksLocalDataSource.getInstance(TasksDatabase.getInstance(applicationContext).taskDao())),tasksFragment)
     }
 
+    //TODO save and restore CURRENT_FILTERING_KEY
+
 }
